@@ -1,0 +1,47 @@
+<edmx:Edmx
+    xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='S4CFIN')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='S4CFIN')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='S4CFIN')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../../sap/ztest_cds_first_cds/$metadata">
+        <edmx:Include Namespace="ZTEST_CDS_FIRST_CDS" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema
+            xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ztest_cds_first_cds_van.v1">
+            <Annotations Target="ZTEST_CDS_FIRST_CDS.ZTEST_CDS_FIRSTType">
+                <Annotation Term="UI.DataPoint" Qualifier="tot_plants">
+                    <Record>
+                        <PropertyValue Property="Value" Path="tot_plants"/>
+                        <PropertyValue Property="Title" String="Number of Plants in CC"/>
+                        <PropertyValue Property="CriticalityCalculation">
+                            <Record>
+                                <PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Target"/>
+                                <PropertyValue Property="DeviationRangeHighValue" Decimal="10"/>
+                                <PropertyValue Property="ToleranceRangeLowValue" Decimal="8"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem" Qualifier="Q1">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="company code"/>
+                            <PropertyValue Property="Value" Path="com_code"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAnnotation">
+                            <PropertyValue Property="Label" String="Total Plants in CC"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#tot_plants"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,120 @@
+{
+	"_version": "1.7.0",
+	"start_url": "start.html",
+	"sap.app": {
+		"id": "sony.zsmartchart",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{app_title}}",
+		"description": "{{app_description}}",
+		"dataSources": {
+			"ZTEST_CDS_FIRST_CDS": {
+				"uri": "/sap/opu/odata/sap/ZTEST_CDS_FIRST_CDS/",
+				"type": "OData",
+				"settings": {
+					"annotations": [
+						"ZTEST_CDS_FIRST_CDS_VAN"
+					],
+					"localUri": "localService/ZTEST_CDS_FIRST_CDS/metadata.xml"
+				}
+			},
+			"ZTEST_CDS_FIRST_CDS_VAN": {
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZTEST_CDS_FIRST_CDS_VAN',Version='0001')/$value/",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "localService/ZTEST_CDS_FIRST_CDS/ZTEST_CDS_FIRST_CDS_VAN.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "OVP.cardtemplate",
+			"version": "0.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "${sap.ui5.dist.version}",
+			"libs": {
+				"sap.ovp": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"@i18n": {
+				"preload": true,
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"ZTEST_CDS_FIRST_CDS": {
+				"dataSource": "ZTEST_CDS_FIRST_CDS",
+				"settings": {
+					"defaultCountMode": "Inline"
+				}
+			}
+		},
+		"extends": {
+			"extensions": {}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.ovp": {
+		"globalFilterModel": "ZTEST_CDS_FIRST_CDS",
+		"globalFilterEntityType": "ZTEST_CDS_FIRSTType",
+		"containerLayout": "resizable",
+		"enableLiveFilter": true,
+		"considerAnalyticalParameters": false,
+		"cards": {
+			"card00": {
+				"model": "ZTEST_CDS_FIRST_CDS",
+				"template": "sap.ovp.cards.list",
+				"settings": {
+					"title": "{{card00_title}}",
+					"subtitle": "{{card00_subTitle}}",
+					"entitySet": "ZTEST_CDS_FIRST",
+					"listType": "extended",
+					"listFlavor": "bar",
+					"sortBy": "tot_plants",
+					"sortOrder": "descending",
+					"addODataSelect": true,
+					"annotationPath": "com.sap.vocabularies.UI.v1.LineItem#Q1"
+				}
+			},
+			"card01": {
+				"model": "ZTEST_CDS_FIRST_CDS",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{card01_title}}",
+					"subTitle": "{{card01_subTitle}}",
+					"entitySet": "ZTEST_CDS_FIRST",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Q2",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#Q2",
+					"identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#Q2",
+					"navigation": "dataPointNav"
+				}
+			}
+		}
+	}
+}
